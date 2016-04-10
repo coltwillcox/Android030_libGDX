@@ -3,6 +3,8 @@ package com.colt.simovina;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -32,6 +34,8 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
     private Animation animation;
     private GlyphLayout layout;
     private OrthographicCamera camera; //2D camera without perspective.
+    private Sound horn;
+    private Music music;
 
 	@Override
 	public void create () {
@@ -61,6 +65,11 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
         //Atlas and animation.
         textureAtlas = new TextureAtlas(Gdx.files.internal("draco.atlas"));
         animation = new Animation(1/10f, textureAtlas.getRegions()); //Frame duration, atlas.
+
+        //Sounds.
+        horn = Gdx.audio.newSound(Gdx.files.internal("sounds/horn.wav"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/assault.ogg"));
+        music.play();
 	}
 
     @Override
@@ -152,6 +161,8 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
         message = "Touched at: " + x + ", " + y;
+        long hornID = horn.play();
+        horn.setVolume(hornID, 1);
         return true;
     }
 
@@ -183,6 +194,8 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
         worldMapTexture.dispose();
         font.dispose();
         textureAtlas.dispose();
+        horn.dispose();
+        music.dispose();
     }
 
 }
