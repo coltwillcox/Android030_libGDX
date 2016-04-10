@@ -1,0 +1,26 @@
+
+draco.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+0 [updated]
+  rotate: false
+  xy: 1, 1
+  size: 174, 103
+  orig: 174, 103
+  offset: 0, 0
+  index: -1
+1 [updated]
+  rotate: false
+  xy: 177, 1
+  size: 174, 103
+  orig: 174, 103
+  offset: 0, 0
+  index: -1
+2 [updated]
+  rotate: false
+  xy: 353, 1
+  size: 174, 103
+  orig: 174, 103
+  offset: 0, 0
+  index: -1
